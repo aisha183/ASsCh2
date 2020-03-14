@@ -98,12 +98,12 @@ public class fin extends Application {
         byte[] digest1= md1.digest();
         String myHash1 = DatatypeConverter.printHexBinary(digest1);
 
-        String password = "aisha";
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(password.getBytes());
-        byte[] digest = md.digest();
-        String myHash = DatatypeConverter.printHexBinary(digest);
-////       System.out.println(password);
+//        String password = "aisha";
+//        MessageDigest md = MessageDigest.getInstance("MD5");
+//        md.update(password.getBytes());
+//        byte[] digest = md.digest();
+//        String myHash = DatatypeConverter.printHexBinary(digest);
+//////       System.out.println(password);
 
         Button btn = new Button("Sign in");
         Button edit = new Button("Edit");
@@ -125,7 +125,7 @@ public class fin extends Application {
 
             @Override
             public void handle(ActionEvent e) {
-                if ((userTextField.getText().equalsIgnoreCase("Aisha"))&&(myHash1.equalsIgnoreCase(myHash))) {
+                if ((userTextField.getText().equalsIgnoreCase("Aisha"))&&(pwBox.getText().equalsIgnoreCase("aisha"))) {
                     new NewStage1();
                 }
                 actiontarget.setFill(Color.FIREBRICK);
