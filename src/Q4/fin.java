@@ -5,6 +5,7 @@
  */
 package Q4;
 
+import java.security.MessageDigest;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,6 +25,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
@@ -90,6 +92,19 @@ public class fin extends Application {
         PasswordField pwBox = new PasswordField();
         grid.add(pwBox, 1, 2);
 
+        String password1 = pwBox.getText();
+        MessageDigest md1 = MessageDigest.getInstance("MD5");
+        md1.update(password1.getBytes());
+        byte[] digest1= md1.digest();
+        String myHash1 = DatatypeConverter.printHexBinary(digest1);
+
+        String password = "aisha";
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(password.getBytes());
+        byte[] digest = md.digest();
+        String myHash = DatatypeConverter.printHexBinary(digest);
+////       System.out.println(password);
+
         Button btn = new Button("Sign in");
         Button edit = new Button("Edit");
         HBox hbBtn = new HBox(10);
@@ -110,11 +125,11 @@ public class fin extends Application {
 
             @Override
             public void handle(ActionEvent e) {
-                if(userTextField.getText().equalsIgnoreCase("Aisha")){
-                 new NewStage1();
+                if ((userTextField.getText().equalsIgnoreCase("Aisha"))&&(myHash1.equalsIgnoreCase(myHash))) {
+                    new NewStage1();
                 }
-                 actiontarget.setFill(Color.FIREBRICK);
-                 actiontarget.setText("Sign in button pressed");
+                actiontarget.setFill(Color.FIREBRICK);
+                actiontarget.setText("Sign in button pressed");
             }
         });
     }
